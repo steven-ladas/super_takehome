@@ -1,0 +1,12 @@
+# yougrow_mart
+yougrow_mart:
+  target: dev
+  outputs:
+    dev:
+      type: mysql
+      server: localhost
+      port: 3306
+      schema: yougrow
+      username: root
+      password: 
+      ssl_disabled: True

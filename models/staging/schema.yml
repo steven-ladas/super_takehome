@@ -1,0 +1,95 @@
+
+version: 2
+
+models:
+
+  - name: staging_products
+    description: "cleaned copy of source products"
+    columns:
+      - name: id
+        description: "unique product id"
+        tests:
+          - unique
+          - not_null
+      - name: title
+        description: "product title/description"
+      - name: category
+        description: "product category (no idea... yet)"
+      - name: price
+        description: "product price (what the customer pays assuming no discounts)"
+      - name: cost
+        description: "product cost (what yougrow pays)"        
+      - name: vendor_id
+        description: "unique vendor id"        
+      - name: created_at
+        description: "datetime of product entry"        
+                
+  - name: staging_vendors
+    description: "cleaned copy of source vendors"
+    columns:
+      - name: id
+        description: "unique vendor id"
+        tests:
+          - unique
+          - not_null
+      - name: title
+        description: "vendor title/description" 
+      - name: created_at
+        description: "datetime of vendor entry"                      
+
+  - name: staging_orders
+    description: "cleaned copy of source orders"
+    columns:
+      - name: id
+        description: "unique transaction id"
+        tests:
+          - unique
+          - not_null
+      - name: customer_id
+        description: "customer associated with order" 
+      - name: currency
+        description: "currency associated with order"                              
+      - name: total_price
+        description: "value of order in associated currency"
+      - name: created_at
+        description: "datetime of order creation"            
+      - name: refunded_at
+        description: "when not null this represents the datetime of a complete refund"
+
+  - name: staging_order_line_items
+    description: "cleaned copy of source order line items"
+    columns:
+      - name: id
+        description: "unique line item id representing a product on an order"
+        tests:
+          - unique
+          - not_null
+      - name: order_id
+        description: "order associated with line item" 
+      - name: product_id
+        description: "product associated with line item" 
+      - name: quantity
+        description: "count of product on line item"         
+      - name: total_price
+        description: "quantity x price of product"                 
+
+  - name: staging_customers
+    description: "cleaned copy of customers"
+    columns:
+      - name: id
+        description: "unique id representing a customer"
+        tests:
+          - unique
+          - not_null
+      - name: name
+        description: "full name of customer" 
+      - name: gender
+        description: "gender" 
+      - name: email
+        description: "email address"         
+      - name: state
+        description: "state portion of address"            
+      - name: country
+        description: "country portion of address"                    
+      - name: created_at
+        description: "datetime of customer creation"           

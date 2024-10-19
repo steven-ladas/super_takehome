@@ -1,0 +1,67 @@
+version: 2
+
+models:
+
+  - name: mart_fact_customer_transactions
+    description: "fact table for derviving KPIs"
+    columns:
+      - name: transaction_date
+        description: "datetime of transaction"      
+      - name: order_id
+        description: "order identifier"
+      - name: customer_id
+        description: "customer identifier"
+      - name: order_total_items_price_gmv
+        description: "sum of order line items (prices x quantity).  DOES NOT INCLUDE REFUNDS"        
+      - name: order_total_items_price
+        description: "sum of order line items (prices x quantity).  INCLUDES REFUNDS"
+      - name: order_total_items_quantity
+        description: "sum of order line item quantities.  INCLUDES REFUNDS"           
+      - name: is_refunded
+        description: "1 if order is refunded, otherwise 0"              
+
+  - name: mart_view_monthly_kpi
+    description: "view sharing KPIs by Month.  designed to be used as a reportable layer"
+    columns:
+      - name: year_num
+        description: "4 character year YYYY"      
+      - name: month_num
+        description: "2 character month MM"
+      - name: GMV
+        description: "Gross Merchandise Value (GMV) - total value of goods sold before deductions"
+      - name: AOV
+        description: "Average Order Value (AOV) - mean value of a single purchase order"
+      - name: ABS
+        description: "Average Basket Size (ABS) - mean count of items in a single purchase order"       
+      - name: AC
+        description: "Active Customers (AC) - count of unique customers making a purchase"    
+
+  - name: mart_view_customer_ltv
+    description: "customer lifetime value by month"
+    columns:
+      - name: year_num
+        description: "4 character year YYYY"      
+      - name: month_num
+        description: "2 character month MM"    
+      - name: customer_id
+        description: "unique customer id"      
+      - name: LTV
+        description: "total lifetime value of customer as of a given year and month"
+       
+  - name: mart_view_customer_crr
+    description: "customers retention rate"
+    columns:
+      - name: cohort_year_num
+        description: "4 character year YYYY"      
+      - name: cohort_month_num
+        description: "2 character month MM"    
+      - name: subsequent_year_num
+        description: "4 character year YYYY"      
+      - name: subsequent_month_num
+        description: "2 character month MM"            
+      - name: repeat_transaction_customer_count
+        description: "count of cohort members that transacted in a subsequent month"       
+      - name: CRR
+        description: "percent of cohort members that transacted in a subsequent month"
+      - name: cohort_count
+        description: "count of customers first transacting in cohort year/month combination"           

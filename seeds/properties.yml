@@ -1,0 +1,51 @@
+version: 2
+
+seeds:
+
+  - name: source_customers
+    config:
+      column_types:
+        id: int
+        name: text
+        gender: text
+        email: text
+        state: text
+        country: text
+        created_at: text
+
+  - name: source_order_line_items
+    config:
+      column_types:
+        id: integer
+        order_id: integer
+        product_id: integer
+        quantity: integer
+        total_price: decimal
+
+  - name: source_orders
+    config:
+      column_types:
+        id: integer
+        customer_id: integer
+        currency: text
+        total_price: decimal
+        created_at: text
+        refunded_at: text
+
+  - name: source_products
+    config:
+      column_types:
+        product: integer
+        title: text
+        category: text
+        price: decimal
+        cost: decimal
+        vendor: integer
+        created_at: text
+
+  - name: source_vendors
+    config:
+      column_types:
+        id: integer
+        title: text
+        created_at: text
