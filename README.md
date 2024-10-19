@@ -31,8 +31,6 @@ On flexibility:
 
 first purchase attributes and user demographics would require some rework here.  I imagine I could add this by persisting the customer IDs by cohort month in a separate model and then attaching customer specific dimensional attribution.
 
-RESULT OF select * from mart_view_customer_ltv
-
 ###### RESULT OF select * from mart_view_customer_(ltv/crr) attached in /results
 
 ##### question 3:
